@@ -52,11 +52,13 @@ resource "aws_instance" "public_instances" {
               systemctl start nginx
               systemctl enable nginx
               echo "<h1>Hostname: $(hostname)</h1>" > /var/www/html/index.html
+              echo "<h1>Hostname: $(hostname)</h1>" > /var/www/html/image/index.html
+              echo "<h1>Hostname: $(hostname)</h1>" > /var/www/html/register/index.html
               systemctl reload nginx
               EOF
 
   tags = {
-    Name = "PublicInstance-${count.index}"
+    Name = "Public-Instance-${count.index}"
   }
 }
 

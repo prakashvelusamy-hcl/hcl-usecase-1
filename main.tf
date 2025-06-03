@@ -12,3 +12,11 @@ module "ec2" {
   public_subnet_ids = module.vpc.public_subnet_ids
   vpc_id            = module.vpc.vpc_id 
 }
+
+#module "alb" {
+# source = "./modules/terraform-aws-alb"
+#  public_instance   = var.public_instance
+#  public_subnet_ids = module.vpc.public_subnet_ids
+#  vpc_id            = module.vpc.vpc_id 
+#  target_id         = module.ec2.id
+#}
