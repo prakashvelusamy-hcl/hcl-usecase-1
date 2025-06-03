@@ -30,7 +30,6 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::495599733393:oidc-provider/token.actions.githubusercontent.com
-          role-session-name: github-assume
           # role-to-assume: ${{ secrets.AWS_SECRET }}
           aws-region: ap-south-1
 
