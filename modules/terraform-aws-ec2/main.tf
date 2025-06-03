@@ -156,7 +156,7 @@ resource "aws_lb_listener_rule" "register" {
 
   action {
     type             = "forward"
-    target_group_arn = target_group_arn = aws_lb_target_group.tg[2].arn
+    target_group_arn = aws_lb_target_group.tg[2].arn
   }
 
   condition {
