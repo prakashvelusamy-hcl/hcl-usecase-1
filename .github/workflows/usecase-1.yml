@@ -12,11 +12,12 @@ on:
         default: 'destroy'
         type: choice
         options:
+          - apply
           - destroy
 
 permissions:
-      id-token: write
-      contents: read
+  id-token: write
+  contents: read
 
 jobs:
   terraform:
@@ -30,7 +31,6 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::495599733393:role/OIDC
-          # role-to-assume: ${{ secrets.AWS_SECRET }}
           aws-region: ap-south-1
 
       - name: Setup Terraform
@@ -41,16 +41,20 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform validate 
+      - name: Terraform Validate 
         run: terraform validate
 
       - name: Terraform Plan
         run: terraform plan 
 
-      - name: Terraform Apply
+      - name: Terraform Apply (push)
         if: contains(github.event.head_commit.message, 'terraform apply')
         run: terraform apply -auto-approve 
 
+      - name: Terraform Apply (manual)
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'apply'
+        run: terraform apply -auto-approve
+
       - name: Terraform Destroy
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
-        run: terraform destroy -auto-approve 
+        run: terraform destroy -auto-approve
