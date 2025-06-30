@@ -20,3 +20,7 @@ variable "public_instance" {
   description = "Number of public EC2 instances to create"
   type        = number
 }
+variable "alb_name" {
+  description = "The Load balancer Name"
+  type = string 
+}

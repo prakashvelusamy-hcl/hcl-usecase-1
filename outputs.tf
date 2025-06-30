@@ -26,5 +26,5 @@ output "instance_public_ips" {
   value = module.ec2.public_instance_ips
 }
 output "alb_dns_name" {
-  value = module.ec2.alb_dns_name
+  value = module.alb.alb_dns_name
 }

@@ -3,3 +3,4 @@ pub_sub_count    = 3
 priv_sub_count   = 0
 nat_count        = 0
 public_instance  = 3
+alb_name = "usecase-1"
